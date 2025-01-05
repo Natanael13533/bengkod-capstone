@@ -23,7 +23,7 @@ class MahasiswaCreateRequest extends FormRequest
     {
         return [
             'namaMhs' => 'required|string|max:255',
-            'nim' => 'required|string|max:15',
+            'nim' => 'required|string|max:15|unique:inputmhs,nim',
             'ipk' => 'required|numeric|between:0,4.00',
         ];
     }
@@ -35,6 +35,7 @@ class MahasiswaCreateRequest extends FormRequest
             'namaMhs.string' => 'Nama mahasiswa harus berupa teks',
             'namaMhs.max' => 'Nama mahasiswa maksimal 255 karakter',
             'nim.required' => 'NIM wajib di isi',
+            'nim.unique' => 'NIM sudah terdaftar',
             'nim.string' => 'NIM harus berupa teks',
             'nim.max' => 'NIM maksimal 15 karakter',
             'ipk.required' => 'IPK wajib di isi',

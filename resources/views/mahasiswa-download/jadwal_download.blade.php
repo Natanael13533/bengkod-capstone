@@ -10,19 +10,8 @@
 <body>
     <div class="container">
         <div class="text-center mt-5 mb-3">
-            <h1>Sistem Input Kartu rencana Studi (KRS)</h1>
-            <h3>Input data KRS mahasiswa dengan mudah dan cepat</h3>
-        </div>
-
-        <div class="d-flex justify-content-between align-items-center mt-5">
-            <h1 class="h3 mb-3"><strong>Input KRS Mahasiswa</strong></h1>
-            <div class="mb-2">
-                <!-- Button to trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inputKRSModal">
-                    Input KRS Mahasiswa
-                </button>
-                @include('Mata-Kuliah.input_krs')
-            </div>
+            <h1>Kartu Rencana Studi</h1>
+            <h3>Lihat Jadwal Mata Kuliah yang Telah Diinputkan Disini</h3>
         </div>
 
         @if (session('success'))
@@ -37,10 +26,6 @@
             </div>
         @endif
 
-        {{-- <div class="list-group-item-info p-3 bg-info border rounded mb-4">
-            <strong>Nama Mahasiswa: {{ $mahasiswa->nama }}</strong>
-        </div> --}}
-
         <div class="list-group">
             <div class="list-group-item list-group-item-info p-3 border rounded mb-4 d-flex justify-content-between align-items-center">
                 <div>
@@ -54,34 +39,36 @@
 
 
         <div class="table-responsive">
-            <table class="table table-striped table-hover table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Mata Kuliah</th>
-                    <th scope="col">SKS</th>
-                    <th scope="col">Kelp</th>
-                    <th scope="col">Ruangan</th>
-                    <th scope="col">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($jadwalMhs as $item)
+            <table class="table table-striped table-hover table-bordered text-center">
+                <thead>
                     <tr>
-                        <th scope="row">{{ $loop->iteration }}</th>
-                        <td>{{ $item->matakuliah }}</td>
-                        <td>{{ $item->sks }}</td>
-                        <td>{{ $item->kelp }}</td>
-                        <td>{{ $item->ruangan }}</td>
-                        <td>
-                            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteJadwalModal{{ $item->id }}">Hapus</button>
-                            @include('Mata-Kuliah.delete_jwl')
-                        </td>
+                        <th scope="col" class="align-middle">No</th>
+                        <th scope="col" class="align-middle">Mata Kuliah</th>
+                        <th scope="col" class="align-middle">SKS</th>
+                        <th scope="col" class="align-middle">Kelp</th>
+                        <th scope="col" class="align-middle">Ruangan</th>
                     </tr>
-                @endforeach
-            </tbody>
+                </thead>
+                <tbody>
+                    @foreach ($jadwalMhs as $item)
+                        <tr>
+                            <th scope="row" class="align-middle">{{ $loop->iteration }}</th>
+                            <td class="align-middle">{{ $item->matakuliah }}</td>
+                            <td class="align-middle">{{ $item->sks }}</td>
+                            <td class="align-middle">{{ $item->kelp }}</td>
+                            <td class="align-middle">{{ $item->ruangan }}</td>
+                        </tr>
+                    @endforeach
+                    <tr>
+                        <td colspan="2" class="align-middle"><strong>SKS</strong></td>
+                        <td class="align-middle">{{ $totalSks }}</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
+        <a href="{{ route('mahasiswa.download.pdf', $mahasiswa->id) }}">
+            <button class="btn btn-sm btn-success">Cetak PDF</button>
+        </a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>

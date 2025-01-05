@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('inputmhs', function (Blueprint $table) {
             $table->id();
             $table->string('namaMhs', 255)->required();
-            $table->string('nim', 15)->required();
+            $table->string('nim', 15)->unique()->required();
             $table->float('ipk')->required();
             $table->integer('sks')->required();
             $table->text('matakuliah')->nullable();

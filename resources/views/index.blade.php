@@ -62,8 +62,12 @@
                             <td class="text-center">
                                 <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteMahasiswaModal{{ $item->id }}">Hapus</button>
                                 @include('mahasiswa.delete_mhs')
-                                <a href="{{ route('mahasiswa.edit', $item->id) }}"><button class="btn btn-sm btn-warning">Edit</button></a>
-                                <button class="btn btn-sm btn-secondary">Lihat</button>
+                                <a href="{{ route('mahasiswa.edit', $item->id) }}" class="text-decoration-none">
+                                    <button class="btn btn-sm btn-warning">Edit</button>
+                                </a>
+                                <a href="{{ route('mahasiswa.pdf', $item->id) }}">
+                                    <button class="btn btn-sm btn-secondary">Lihat</button>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
